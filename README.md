@@ -1,4 +1,6 @@
-# Sesimple Framework
+# Sesimple CMS
+
+**Sesimple CMS** is a CMS based on **Sesimple Framework**, it's a simple and very minimal CMS that store local file database.
 
 **Sesimple** or *Sesimple Yang Boleh* is a Malay language slang for doing something as simple as it can. Thus, the name actually explains the purpose of this framework.
 
@@ -37,9 +39,9 @@ SSH to container:
 bash deploy/ssh
 ```
 
-On you local machine `hosts` file, include `127.0.0.1 sesimple.local`.
+On you local machine `hosts` file, include `127.0.0.1 cms.sesimple.local`.
 
-Now you can access the site on address http://sesimple.local:8888
+Now you can access the site on address http://cms.sesimple.local:8888
 
 ### Initial Application Setup
 

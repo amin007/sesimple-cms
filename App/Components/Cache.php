@@ -45,7 +45,7 @@ class Cache
             }
 
             if (!empty($cache['data'])) {
-                return unserialize(gzuncompress(base64_decode($cache['data'])));
+                return unserialize(gzuncompress(base64_decode($cache['data'])));  // unserialize(gzuncompress($cache['data']));
             }
         }
 

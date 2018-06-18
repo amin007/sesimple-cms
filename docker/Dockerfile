@@ -43,7 +43,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 # define environment variable
 ENV NAME sesimple
-ENV HOME /var/www/sesimple
+ENV HOME /var/www/sesimple-cms
 WORKDIR $HOME
 
 # setup docker requirement data

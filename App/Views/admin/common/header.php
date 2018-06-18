@@ -1,7 +1,6 @@
 <?php
 
 use App\Components\UrlHelper;
-use App\Components\Auth;
 
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 $is_home_page = ($request_uri[0] === '/');
@@ -67,26 +66,19 @@ $header_twitter_username = !empty($header['twitter_username']) ? $header['twitte
     <?= @$add_in_head ?>
 </head>
 <body class="<?= @$add_in_body_class ?>">
-    <div class="navbar navbar-dark bg-dark mb-3">
-        <span class="navbar-brand mb-0 h1"><a href="<?= UrlHelper::base_url() ?>" class="text-white"><i class="fas fa-home"></i></a></span>
-
-        <?php if (Auth::isAuth()) : ?>
+    <?php if (!@$no_header) : ?>
+        <div class="navbar navbar-dark bg-dark mb-3">
+            <span class="navbar-brand mb-0 h1"><a href="<?= UrlHelper::base_url() ?>" class="text-white"><i class="fas fa-home"></i></a></span>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin">Dashboard <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-        <?php endif ?>
 
-        <ul class="navbar-nav">
-            <?php if (!Auth::isAuth()) : ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/login">Login</a>
-                </li>
-            <?php else : ?>
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/logout">Logout</a>
                 </li>
-            <?php endif ?>
-        </ul>
-    </div>
+            </ul>
+        </div>
+    <?php endif ?>

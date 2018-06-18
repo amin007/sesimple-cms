@@ -14,6 +14,11 @@ class View
             throw new \Error("Template file {$template} not exist!");
         }
 
+        global $add_in_body_class;
+        if (isset($add_in_body_class) && is_array($add_in_body_class)) {
+            extract($add_in_body_class, EXTR_SKIP);
+        }
+
         global $add_in_head;
         if (isset($add_in_head) && is_array($add_in_head)) {
             extract($add_in_head, EXTR_SKIP);
