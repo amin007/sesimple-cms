@@ -6,9 +6,20 @@ use App\Components\TextHelper;
 
 class Cache
 {
+    public $cacheDir;
+
+    public function __construct($cacheDir = null)
+    {
+        if (!$cacheDir) {
+            $cacheDir = CACHE_DIR;
+        }
+
+        $this->cacheDir = $cacheDir;
+    }
+
     private function filePath($key, $subDir = null)
     {
-        return CACHE_DIR . '/' . ($subDir ? "{$subDir}/" : '') . "{$key}.cache";
+        return "{$this->cacheDir}/" . ($subDir ? "{$subDir}/" : '') . "{$key}.cache";
     }
 
     public function set($cacheKey, $cacheData, $expire = false, $prefix = null)
@@ -57,7 +68,8 @@ class Cache
         $cacheFile = $this->filePath($cacheKey, $prefix);
 
         if (file_exists($cacheFile)) {
-            return unlink($cacheFile) ? true : false;
+            $remove = unlink($cacheFile);
+            return $remove;
         }
 
         return true;
@@ -65,7 +77,7 @@ class Cache
 
     public function removePrefix($prefix)
     {
-        $cacheDir = CACHE_DIR . "/{$prefix}";
+        $cacheDir = "{$this->cacheDir}/{$prefix}";
 
         if (file_exists($cacheDir)) {
             return rmdir($cacheDir) ? true : false;
@@ -77,7 +89,7 @@ class Cache
     public function removeAll()
     {
         $removes = [];
-        foreach (glob(CACHE_DIR . '/*') as $dir) {
+        foreach (glob("{$this->cacheDir}/*") as $dir) {
 
             if (is_dir($dir)) {
                 system('rm -rf ' . escapeshellarg($dir), $retval);

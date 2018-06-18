@@ -28,7 +28,7 @@ class Admin extends Web
 
                 if (!empty($_POST['csrf']) && hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
                     $controller = new AdminController();
-                    $controller->doLogin($_POST['username'], $_POST['password']);
+                    $controller->doLogin();
                     break;
                 }
 
@@ -39,6 +39,24 @@ class Admin extends Web
             case $this->isRoute('/admin/logout'):
                 $controller = new AdminController();
                 $controller->logout();
+                break;
+
+            case $this->isRoute('/admin/pages/add'):
+
+                if (@$_GET['action'] === 'remove' && @$_GET['page_id']) {
+                    $controller = new AdminController();
+                    $controller->doAddPage();
+                    break;
+                }
+
+                if (!empty($_POST['csrf']) && hash_equals($_SESSION['csrf'], $_POST['csrf'])) {
+                    $controller = new AdminController();
+                    $controller->doAddPage();
+                    break;
+                }
+
+                $controller = new AdminController();
+                $controller->addPage();
                 break;
 
             default:

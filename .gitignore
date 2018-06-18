@@ -2,6 +2,7 @@
 vendor
 App/Cache/*
 App/Configs/local.php
+App/Storages/Data/pages/*
 docker/data/mysql/*
 docker/data/mongodb/*
 .viminfo

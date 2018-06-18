@@ -5,6 +5,7 @@ const APP_DIR           = __DIR__ . '/App';
 const VIEW_DIR          = __DIR__ . '/App/Views';
 const CACHE_DIR         = __DIR__ . '/App/Cache';
 const CONFIG_DIR        = __DIR__ . '/App/Configs';
+const DATA_DIR          = __DIR__ . '/App/Storages/Data';
 
 // time caching helper
 const MINUTE_IN_SECONDS  = 60;
