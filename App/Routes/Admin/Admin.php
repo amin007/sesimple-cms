@@ -8,6 +8,10 @@ use App\Controllers\Admin\Admin as AdminController;
 // routes
 use App\Routes\Web;
 
+// components
+use App\Components\Auth;
+use App\Components\UrlHelper;
+
 class Admin extends Web
 {
     public function __construct()
@@ -20,6 +24,11 @@ class Admin extends Web
         switch (true) {
 
             case $this->isRoute('/admin'):
+
+                if (!Auth::isAuth()) {
+                    UrlHelper::redirect('/admin/login');
+                }
+
                 $controller = new AdminController();
                 $controller->index();
                 break;
