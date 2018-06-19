@@ -18,7 +18,7 @@ class Page extends Model
         return $__pages = glob(DATA_DIR . '/pages/*');
     }
 
-    public function all(int $id = 0)
+    public function all()
     {
         $__pages = glob(DATA_DIR . '/pages/*');
         $total = count($__pages);
@@ -31,11 +31,6 @@ class Page extends Model
                 $i = pathinfo($page);
                 $__page = $this->database->get($i['filename'], 'pages');
                 $__page = array_merge($__page, ['id' => $i['filename']]);
-
-                if ((int)$i['filename'] === (int)$id) {
-                    return new Page($__page);
-                }
-
                 $pages[] = new Page($__page);
             }
         }
@@ -43,9 +38,13 @@ class Page extends Model
         return $pages;
     }
 
-    public function find(int $id)
+    public function find($id)
     {
-        return $this->all($id);
+        if ($page = $this->database->get($id, 'pages')) {
+            return new Page($page);
+        }
+
+        return null;
     }
 
     public function getTitle()
