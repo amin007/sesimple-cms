@@ -2,6 +2,9 @@
 
 namespace App\Components;
 
+// vendors
+use League\CommonMark\CommonMarkConverter;
+
 class TextHelper
 {
     /**
@@ -13,7 +16,7 @@ class TextHelper
      * @param  string $delimiter
      * @return string
      */
-    public function slugify($str, $delimiter = '-') {
+    public static function slugify($str, $delimiter = '-') {
 
         $title = ascii($title);
 
@@ -28,5 +31,11 @@ class TextHelper
         $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
 
         return trim($title, $separator);
+    }
+
+    public static function markdownToHtml($str)
+    {
+        $converter = new CommonMarkConverter();
+        return $converter->convertToHtml($str);
     }
 }

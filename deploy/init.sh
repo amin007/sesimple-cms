@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # VARIABLES
-APP_NAME="SESIMPLE"
-APP_CONTAINER="sesimple"
+APP_NAME="SESIMPLE_CMS"
+APP_CONTAINER="sesimple_cms"
 
-DB_NAME="SESIMPLEDB (not available for now)"
-DB_CONTAINER="sesimpledb"
+DB_NAME="SESIMPLEDB_CMS (not available for now)"
+DB_CONTAINER="sesimpledb_cms"
 
 TXT_C_RED=1
 TXT_C_GREEN=2

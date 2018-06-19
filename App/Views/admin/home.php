@@ -17,8 +17,8 @@ use App\Components\Auth;
         <hr>
         <div class="list-group">
             <?php foreach ($pages as $page) : ?>
-                <a href="/admin/pages/add?page_id=<?= $page['id'] ?>" class="list-group-item list-group-item-action">
-                    <?= $page['title'] ?>
+                <a href="<?= $page->getEditUrl() ?>" class="list-group-item list-group-item-action">
+                    <?= $page->getTitle() ?>
                 </a>
             <?php endforeach ?>
         </div>

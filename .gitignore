@@ -7,3 +7,4 @@ docker/data/mysql/*
 docker/data/mongodb/*
 .viminfo
 .bash_history
+.composer

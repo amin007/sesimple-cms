@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Components\Cache;
 use App\Components\Config;
 use App\Components\TextHelper;
+use App\Components\Database;
 
 class Model
 {
@@ -12,11 +13,13 @@ class Model
     protected $__raw_data;
     protected $cache;
     protected $config;
+    protected $database;
 
     public function __construct($raw_data = [])
     {
         $this->cache = new Cache();
         $this->config = new Config();
+        $this->database = new Database();
         $this->__raw_data = $raw_data;
 
         if ($raw_data) {

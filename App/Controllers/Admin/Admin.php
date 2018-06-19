@@ -13,6 +13,7 @@ use App\Components\Database;
 
 // models
 use App\Models\User;
+use App\Models\Page;
 
 class Admin extends Controller
 {
@@ -26,22 +27,11 @@ class Admin extends Controller
 
     public function index()
     {
-        $pages = [];
-        $__pages = glob(DATA_DIR . '/pages/*');
-        $total = count($pages);
-
-        rsort($__pages);
-
-        foreach ($__pages as $page) {
-            $i = pathinfo($page);
-            $__page = $this->database->get($i['filename'], 'pages');
-            $__page = array_merge($__page, ['id' => $i['filename']]);
-            $pages[] = $__page;
-        }
+        $page = new Page;
 
         echo $this->view->render('admin/home', [
             'self' => $this,
-            'pages' => $pages,
+            'pages' => $page->all(),
         ], true);
     }
 
@@ -88,16 +78,14 @@ class Admin extends Controller
     {
         $pageId = (!empty($_GET['page_id']) ? $_GET['page_id'] : null);
         $pageData = [];
+        $page = new Page;
 
         if ($pageId) {
-            if ($pageData = $this->database->get($pageId, 'pages')) {
-                $pageData = array_merge($pageData, [
-                    'id' => $pageId
-                ]);
-            }
+            $pageData = $page->find($pageId);
         }
+
         echo $this->view->render('admin/pages/add', [
-            'pageData' => $pageData
+            'pageData' => $pageData ? $pageData : $page
         ], true);
     }
 

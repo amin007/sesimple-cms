@@ -58,10 +58,6 @@ class Admin extends Web
                 $controller = new AdminController();
                 $controller->addPage();
                 break;
-
-            default:
-                header('HTTP/1.0 404 Not Found');
-                break;
         }
 
         return $route;
