@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'base_url' => 'https://www.sesimple-framework.com:8787'
+    'base_url' => 'http://cms.sesimple.local:8888'
 ];

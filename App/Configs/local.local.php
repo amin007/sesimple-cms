@@ -2,6 +2,6 @@
 
 return [
     'app' => [
-        'base_url' => '/',
+        'base_url' => 'http://cms.sesimple.local:8888'
     ]
 ];
