@@ -13,29 +13,28 @@ class Page extends Model
     protected $slug;
     protected $body;
 
-    private function getDataAll()
-    {
-        return $__pages = glob(DATA_DIR . '/pages/*');
-    }
-
     public function all()
     {
-        $__pages = glob(DATA_DIR . '/pages/*');
-        $total = count($__pages);
+        if (file_exists(DATA_DIR . '/pages')) {
+            $__pages = glob(DATA_DIR . '/pages/*');
+            $total = count($__pages);
 
-        if ($total) {
+            if ($total) {
 
-            rsort($__pages);
+                rsort($__pages);
 
-            foreach ($__pages as $page) {
-                $i = pathinfo($page);
-                $__page = $this->database->get($i['filename'], 'pages');
-                $__page = array_merge($__page, ['id' => $i['filename']]);
-                $pages[] = new Page($__page);
+                foreach ($__pages as $page) {
+                    $i = pathinfo($page);
+                    $__page = $this->database->get($i['filename'], 'pages');
+                    $__page = array_merge($__page, ['id' => $i['filename']]);
+                    $pages[] = new Page($__page);
+                }
             }
+
+            return $pages;
         }
 
-        return $pages;
+        return [];
     }
 
     public function find($id)

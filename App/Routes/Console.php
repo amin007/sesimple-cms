@@ -4,6 +4,7 @@ namespace App\Routes;
 
 // components
 use App\Components\Cache;
+use App\Components\Database;
 
 class Console
 {
@@ -33,10 +34,20 @@ class Console
 
                 case 'cache/clear':
 
-                    echo '--===[SESIMPLE] CLEAR ALL CACHE===--' . PHP_EOL;
+                    echo '--===[SESIMPLE] Remove all caches===--' . PHP_EOL;
                     echo PHP_EOL;
                     $cache = new Cache;
                     print_r($cache->removeAll());
+                    echo PHP_EOL;
+                    die();
+                    break;
+
+                case 'admin/pages/clear':
+
+                    echo '--===[SESIMPLE] Remove all pages===--' . PHP_EOL;
+                    echo PHP_EOL;
+                    $db = new Database;
+                    print_r($db->removeAll());
                     echo PHP_EOL;
                     die();
                     break;
@@ -58,8 +69,9 @@ class Console
         echo 'LIST OF CONSOLE COMMANDS:' . PHP_EOL;
         echo PHP_EOL;
 
-        echo ' - HELLO:                                      php sesimple hello' . PHP_EOL;
-        echo ' - CACHE / CLEAR:                              php sesimple cache/clear' . PHP_EOL;
+        echo ' - Example command:                       php sesimple hello' . PHP_EOL;
+        echo ' - Remove all caches:                     php sesimple cache/clear' . PHP_EOL;
+        echo ' - Remove all pages:                      php sesimple admin/pages/clear' . PHP_EOL;
 
         echo PHP_EOL;
 
