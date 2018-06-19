@@ -18,6 +18,19 @@ class Web
                 $controller->index();
                 break;
 
+            case $this->isRoute('/page', true):
+                $params = $this->parseCurrentUrl('/page');
+                $pageId = !empty($params[3]) ? $params[3] : null;
+
+                if ($pageId) {
+                    $controller = new SiteController();
+                    $controller->page($pageId);
+                    break;
+                }
+
+                header('HTTP/1.0 404 Not Found');
+                break;
+
             case $this->isRoute('/about-sesimple-framework'):
                 $controller = new SiteController();
                 $controller->staticPage('pages/about-us');

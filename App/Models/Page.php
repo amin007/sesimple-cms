@@ -55,7 +55,7 @@ class Page extends Model
 
     public function getSlug()
     {
-        return $this->slug;
+        return $this->slug ?: TextHelper::slugify($this->getTitle());
     }
 
     public function getBody($html = false)
@@ -70,6 +70,15 @@ class Page extends Model
     public function getId()
     {
         return (int)$this->id;
+    }
+
+    public function getUrl()
+    {
+        if (!$this->getId()) {
+            return null;
+        }
+
+        return "/page/{$this->getSlug()}/{$this->getId()}";
     }
 
     public function getEditUrl()

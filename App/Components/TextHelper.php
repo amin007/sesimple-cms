@@ -16,21 +16,19 @@ class TextHelper
      * @param  string $delimiter
      * @return string
      */
-    public static function slugify($str, $delimiter = '-') {
-
-        $title = ascii($title);
-
+    public static function slugify($str, $separator = '-')
+    {
         // Convert all dashes/underscores into separator
         $flip = $separator == '-' ? '_' : '-';
-        $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
+        $str = preg_replace('!['.preg_quote($flip).']+!u', $separator, $str);
 
         // Remove all characters that are not the separator, letters, numbers, or whitespace.
-        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($title));
+        $str = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', mb_strtolower($str));
 
         // Replace all separator characters and whitespace by a single separator
-        $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
+        $str = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $str);
 
-        return trim($title, $separator);
+        return trim($str, $separator);
     }
 
     public static function markdownToHtml($str)
